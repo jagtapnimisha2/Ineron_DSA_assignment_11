@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- Question8:- Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+Example:-Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+ -->
+    <script>
+        var intersect = function(nums1, nums2) {
+    const freqMap1 = new Map();
+    const freqMap2 = new Map();
+    const intersection = [];
+
+    for (let num of nums1) {
+        freqMap1.set(num, (freqMap1.get(num) || 0) + 1);
+    }
+
+    for (let num of nums2) {
+        freqMap2.set(num, (freqMap2.get(num) || 0) + 1);
+    }
+
+    for (let [num, freq] of freqMap1) {
+        if (freqMap2.has(num)) {
+            const minFreq = Math.min(freq, freqMap2.get(num));
+            for (let i = 0; i < minFreq; i++) {
+                intersection.push(num);
+            }
+        }
+    }
+
+    return intersection;
+};
+document.write("The ans is a "+intersect([1, 2, 2, 1], [2, 2]));
+
+    </script>
+</body>
+</html>
